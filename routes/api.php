@@ -22,9 +22,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 */
 
-Route::get('/', function () {
-    return response()->json(['message' => 'App Barbeiros', 'satatus:' => 'Conectado']);
-});
+// Route::get('/', function () {
+//     return response()->json(['message' => 'App Barbeiros', 'satatus:' => 'Conectado']);
+// });
 
 Route::group([
     'middleware' => 'api',

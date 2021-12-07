@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 
 class CompanyController extends Controller
 {
+    
+    // com o construct, será preciso informar o token para poder executar as demais funções
     public function __construct()
     {
         $this->middleware('auth:api');
