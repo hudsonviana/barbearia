@@ -38,7 +38,8 @@ Route::group([
     Route::post('refresh', [AuthController::class, 'refresh']);
     Route::post('me', [AuthController::class, 'me']);
 
-    //Companies
+    //Outros controllers
     Route::resource('companies', CompanyController::class)->except(['create', 'edit']);
+    Route::resource('employees', EmployeeController::class)->except(['create', 'edit']);
 
 });
