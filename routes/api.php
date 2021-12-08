@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 
-
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
@@ -41,5 +40,6 @@ Route::group([
     //Outros controllers
     Route::resource('companies', CompanyController::class)->except(['create', 'edit']);
     Route::resource('employees', EmployeeController::class)->except(['create', 'edit']);
+    Route::resource('schedules', ScheduleController::class)->except(['create', 'edit']);
 
 });
