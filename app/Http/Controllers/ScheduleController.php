@@ -91,7 +91,7 @@ class ScheduleController extends Controller
         if ($schedules) {
             return response()->json($schedules);
         }
-        return response()->json(['error' => 'Dados não salvos.'], 401);
+        return response()->json(['error' => 'Dados não atualizados.'], 401);
     }
 
     /**

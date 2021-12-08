@@ -2,10 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Service;
 use Illuminate\Http\Request;
 
 class ServiceController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,17 +19,12 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $services = Service::all();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        if ($services) {
+            return response()->json($services);
+        }
+        return response()->json(['error' => 'Dados não encontrados.'], 401);
     }
 
     /**
@@ -34,7 +35,18 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $services = new Service();
+
+        $services->name = $request->name;
+		$services->description = $request->description;
+		$services->cost = $request->cost;
+		$services->company_id = $request->company_id;
+        $services->save();
+
+        if ($services) {
+            return response()->json($services);
+        }
+        return response()->json(['error' => 'Dados não salvos.'], 401);
     }
 
     /**
@@ -45,18 +57,12 @@ class ServiceController extends Controller
      */
     public function show($id)
     {
-        //
-    }
+        $services = Service::find($id);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        if ($services) {
+            return response()->json($services);
+        }
+        return response()->json(['error' => 'Dados não encontrados.'], 401);
     }
 
     /**
@@ -68,7 +74,18 @@ class ServiceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $services = Service::find($id);
+
+        $services->name = $request->name;
+		$services->description = $request->description;
+		$services->cost = $request->cost;
+		$services->company_id = $request->company_id;
+        $services->save();
+
+        if ($services) {
+            return response()->json($services);
+        }
+        return response()->json(['error' => 'Dados não atualizados.'], 401);
     }
 
     /**
@@ -79,6 +96,12 @@ class ServiceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $services = Service::find($id);
+
+        if ($services) {
+            $services->delete();
+            return response()->json($services);
+        }
+        return response()->json(['error' => 'Dados não deletados.'], 401);
     }
 }
