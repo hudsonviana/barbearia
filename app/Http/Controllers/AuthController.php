@@ -27,7 +27,6 @@ class AuthController extends Controller
     }
 
     // Cadastro
-
     public function register(Request $request) {
         $user = User::where('email', $request->email)->first();
 

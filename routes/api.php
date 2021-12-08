@@ -22,16 +22,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 */
 
-// Route::get('/', function () {
-//     return response()->json(['message' => 'App Barbeiros', 'satatus:' => 'Conectado']);
-// });
+Route::get('/', function () {
+    return response()->json(['message' => 'App Barbeiros', 'satatus:' => 'Conectado']);
+});
 
 Route::group([
     'middleware' => 'api',
     'prefix' => 'auth'
 ], function ($router) {
 
-    //Usuário
+    //Users
     Route::post('login', [AuthController::class, 'login']);
     Route::post('register', [AuthController::class, 'register']);
     Route::post('logout', [AuthController::class, 'logout']);

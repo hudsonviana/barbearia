@@ -59,7 +59,7 @@ class CompanyController extends Controller
         $company->save();
 
         if ($company) {
-            return response()->json(['message' => 'Companhia criada com sucesso!'], $company);
+            return response()->json(['message' => 'Companhia criada com sucesso!', 'data' => $company]);
         }
         return response()->json(['error' => 'Dados não salvos.'], 401);
     }
@@ -110,9 +110,9 @@ class CompanyController extends Controller
 		$company->social_link = $request->social_link;
 		$company->image = $request->image;
         $company->save();
-
+        
         if ($company) {
-            return response()->json($company);
+            return response()->json(['message' => 'Companhia atualizada com sucesso!', 'data' => $company]);
         }
         return response()->json(['error' => 'Dados não autalizados.'], 401);
     }
@@ -126,9 +126,9 @@ class CompanyController extends Controller
     public function destroy($id)
     {
         $company = Company::find($id);
-        $company->remove();
 
         if ($company) {
+            $company->delete();
             return response()->json($company);
         }
         return response()->json(['error' => 'Dados não deletados.'], 401);
